@@ -3,7 +3,7 @@ package com.example.swift_api.controller;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
-import static org.mockito.Mockito.when;  // dodane
+import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -29,7 +29,7 @@ public class SwiftCodeControllerTest {
     private SwiftCodeService swiftCodeService;
 
     @MockBean
-    private ExcelImportService excelImportService;  // dodane
+    private ExcelImportService excelImportService;
 
     @Test
     void shouldGetSwiftCodesByCountry() throws Exception {

@@ -30,7 +30,6 @@ public class ExcelImportService {
             Sheet sheet = workbook.getSheetAt(0);
             Map<String, SwiftCode> swiftCodes = new HashMap<>();
             
-            // Wczytaj wszystkie kody SWIFT
             for (int i = 1; i <= sheet.getLastRowNum(); i++) {
                 Row row = sheet.getRow(i);
                 if (row == null) continue;
@@ -50,7 +49,6 @@ public class ExcelImportService {
                 swiftCodes.put(swiftCodeStr, swiftCode);
             }
             
-            // Ustaw powiązania
             swiftCodes.values().stream()
                 .filter(code -> !code.isHeadquarter())
                 .forEach(code -> {
@@ -61,7 +59,6 @@ public class ExcelImportService {
                     }
                 });
             
-            // Zapisz wszystko jednym wywołaniem
             swiftCodeRepository.saveAll(new ArrayList<>(swiftCodes.values()));
         }
     }

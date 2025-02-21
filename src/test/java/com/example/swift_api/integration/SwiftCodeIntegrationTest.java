@@ -40,7 +40,7 @@ class SwiftCodeIntegrationTest {
         swiftCode.setHeadquarter(true);
         swiftCodeRepository.save(swiftCode);
 
-        // when & then
+        // when&then
         mockMvc.perform(get("/v1/swift-codes/PKOPPLPWXXX")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -69,7 +69,7 @@ class SwiftCodeIntegrationTest {
         swiftCodeRepository.save(swiftCode1);
         swiftCodeRepository.save(swiftCode2);
 
-        // when & then
+        // when&then
         mockMvc.perform(get("/v1/swift-codes/country/PL")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

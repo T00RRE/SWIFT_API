@@ -38,7 +38,6 @@ void shouldImportExcelFile() throws IOException {
     Workbook workbook = new XSSFWorkbook();
     Sheet sheet = workbook.createSheet("Swift Codes");
     
-    // Create header row
     Row headerRow = sheet.createRow(0);
     headerRow.createCell(0).setCellValue("COUNTRY ISO2 CODE");
     headerRow.createCell(1).setCellValue("SWIFT CODE");
@@ -48,7 +47,6 @@ void shouldImportExcelFile() throws IOException {
     headerRow.createCell(5).setCellValue("TOWN NAME");
     headerRow.createCell(6).setCellValue("COUNTRY NAME");
 
-    // Create data row
     Row dataRow = sheet.createRow(1);
     dataRow.createCell(0).setCellValue("PL");
     dataRow.createCell(1).setCellValue("PKOPPLPWXXX");
@@ -58,12 +56,10 @@ void shouldImportExcelFile() throws IOException {
     dataRow.createCell(5).setCellValue("Warszawa");
     dataRow.createCell(6).setCellValue("POLAND");
 
-    // Convert workbook to bytes
     ByteArrayOutputStream bos = new ByteArrayOutputStream();
     workbook.write(bos);
     byte[] bytes = bos.toByteArray();
 
-    // Create mock MultipartFile
     MultipartFile file = new MockMultipartFile(
         "file",
         "test.xlsx",
@@ -71,7 +67,6 @@ void shouldImportExcelFile() throws IOException {
         bytes
     );
 
-    // Configure mock
     when(swiftCodeRepository.saveAll(anyList())).thenReturn(new ArrayList<>());
 
     // when
@@ -91,7 +86,7 @@ void shouldImportExcelFile() throws IOException {
             new byte[0]
         );
 
-        // when & then
+        // when& then
         assertThrows(
             EmptyFileException.class,
             () -> excelImportService.importExcelFile(emptyFile)
